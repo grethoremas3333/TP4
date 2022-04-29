@@ -1,0 +1,13 @@
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/config/DataBaseConfig.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/util/InputReaderUtil.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/service/ParkingService.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/model/Ticket.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/service/InteractiveShell.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/constants/DBConstants.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/constants/ParkingType.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/model/ParkingSpot.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/service/FareCalculatorService.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/App.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/dao/ParkingSpotDAO.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/constants/Fare.java
+/mnt/c/Users/J.Massoda/IdeaProjects/parkingsystemoriginal/src/main/java/com/parkit/parkingsystem/dao/TicketDAO.java
