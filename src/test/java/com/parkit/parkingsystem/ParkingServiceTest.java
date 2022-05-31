@@ -34,7 +34,10 @@ public class ParkingServiceTest {
     @BeforeEach
     private void setUpPerTest() {
         try {
+            System.out.println("//---------- cette methode retourne :"+inputReaderUtil.readVehicleRegistrationNumber() +" ----------\\\\");
+
             when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
+            System.out.println("//---------- cette methode retourne :"+inputReaderUtil.readVehicleRegistrationNumber() +" ----------\\\\");
 
             ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
             Ticket ticket = new Ticket();
