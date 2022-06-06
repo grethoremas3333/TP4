@@ -84,6 +84,7 @@ public class FareCalculatorServiceTest {
 
     @Test
     public void calculateFareBikeWithLessThanOneHourParkingTime(){
+        //Arrange
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  45 * 60 * 1000) );//45 minutes parking time should give 3/4th parking fare
         Date outTime = new Date();
@@ -91,8 +92,14 @@ public class FareCalculatorServiceTest {
 
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
+        ///System.out.println("l'heure d'entree est: "+inTime); //
+        ///System.out.println(ticket.getInTime());
+        ///System.out.println("l'heure de sortie est: "+outTime); //
+        ///System.out.println(ticket.getOutTime());
         ticket.setParkingSpot(parkingSpot);
+        //Act
         fareCalculatorService.calculateFare(ticket);
+        //Assert
         assertEquals((0.75 * Fare.BIKE_RATE_PER_HOUR), ticket.getPrice() );
     }
 
