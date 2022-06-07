@@ -121,7 +121,9 @@ public class FareCalculatorServiceTest {
     public void calculateFareCarWithMoreThanADayParkingTime(){
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  24 * 60 * 60 * 1000) );//24 hours parking time should give 24 * parking fare per hour
+        ///System.out.println("la premiere valeur est de: "+inTime);
         Date outTime = new Date();
+        ///System.out.println("la seconde valeur est de: "+outTime);
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
 
         ticket.setInTime(inTime);
