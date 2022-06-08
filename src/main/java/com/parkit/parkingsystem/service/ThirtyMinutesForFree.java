@@ -5,7 +5,7 @@ import com.parkit.parkingsystem.model.Ticket;
 
 public class ThirtyMinutesForFree {
 
-    public void calculateFare(Ticket ticket){
+    public void calculateFareWith30Remise(Ticket ticket){
         if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){
             throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
         }
@@ -22,19 +22,24 @@ public class ThirtyMinutesForFree {
         //TODO: Some tests are failing here. Need to check if this logic is correct
         ///System.out.println("HelloICI");
         inHour = (inHour * 60.0) + inMinutes;
-        //**/inHour = inHour - 30.0; //***/ a decommenter pour que le test passe au Vert
-        ///System.out.println("heure arrive: "+inHour); ///
+        System.out.println("heure arrive: "+inHour); ///
+        /**/inHour = inHour - (30.0); //***/ a decommenter pour que le test passe au Vert
+        /**/System.out.println("heure arrive: "+inHour); ///
         outHour = (outHour * 60.0) + outMinutes;
-        ///System.out.println("heure sortie: "+outHour); ///
+        /**/System.out.println("heure sortie: "+outHour); ///
 
         double duration = 0.0;
 
-        if ((outHour - inHour == 0.0) && (daysDifference == 0.0)) {
+        /**/ if ((outHour - inHour == 0.0) && (daysDifference == 0.0)) {
             System.out.println("le vehicule est stationne depuis 30 minutes seulement donc il n'a rien a payer");
             duration = ((outHour - inHour) + (daysDifference * 24.0 * 60.0)); // retire / 60.0 pour eviter exception
         } else {
             duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0);
-        }
+        }/**/
+
+        //duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0);
+        System.out.println("la duree totale est de: "+duration);
+
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
                 ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
