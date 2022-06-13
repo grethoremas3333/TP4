@@ -1,6 +1,7 @@
 package com.parkit.parkingsystem.service;
 
 import com.parkit.parkingsystem.constants.Fare;
+import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.Ticket;
 
 public class ThirtyMinutesForFree {
@@ -23,30 +24,36 @@ public class ThirtyMinutesForFree {
         ///System.out.println("HelloICI");
         inHour = (inHour * 60.0) + inMinutes;
         System.out.println("heure arrive: "+inHour); ///
-        /**/inHour = inHour - (30.0); //***/ a decommenter pour que le test passe au Vert
+        //**/inHour = inHour + (30.0); //***/ a decommenter pour que le test passe au Vert
         /**/System.out.println("heure arrive: "+inHour); ///
         outHour = (outHour * 60.0) + outMinutes;
         /**/System.out.println("heure sortie: "+outHour); ///
 
+        double difference = inHour + (30.0);
         double duration = 0.0;
 
-        /**/ if ((outHour - inHour == 0.0) && (daysDifference == 0.0)) {
-            System.out.println("le vehicule est stationne depuis 30 minutes seulement donc il n'a rien a payer");
-            duration = ((outHour - inHour) + (daysDifference * 24.0 * 60.0)); // retire / 60.0 pour eviter exception
-        } else {
-            duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0);
-        }/**/
+        /*if (31 =< (outHour - inHour) =<59){
 
-        //duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0);
+        }*/
+          if ( ((outHour - difference) < 30) && (ticket.getParkingSpot().getParkingType()== ParkingType.CAR) ) { //&& (daysDifference == 0.0)
+            System.out.println("le vehicule est stationne depuis moins ou 30 minutes seulement donc il n'a rien a payer");
+            duration = 0.75;
+        } if (((outHour - difference) < 30) && (ticket.getParkingSpot().getParkingType()== ParkingType.BIKE) ) {
+            duration = 0.50;
+        }else {
+            duration = ( (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0) );
+        }//**/
+
+        // duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0);
         System.out.println("la duree totale est de: "+duration);
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
-                ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
+                ticket.setPrice((duration * Fare.CAR_RATE_PER_HOUR) - 0.75); //ticket.setPrice((duration * Fare.CAR_RATE_PER_HOUR)); //
                 break;
             }
             case BIKE: {
-                ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
+                ticket.setPrice((duration * Fare.BIKE_RATE_PER_HOUR) - 0.50); //ticket.setPrice((duration * Fare.BIKE_RATE_PER_HOUR)); //
                 break;
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
