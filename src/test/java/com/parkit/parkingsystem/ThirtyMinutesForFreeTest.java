@@ -168,6 +168,27 @@ public class ThirtyMinutesForFreeTest {
         assertEquals((Fare.CAR_RATE_PER_HOUR*1.25), ticket.getPrice() );
     }
 
+    @Test
+    public void calculateFareBikeWithMoreThanOneHourParkingTime(){
+        //Arrange
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  105 * 60 * 1000) );//45 minutes parking time should give 3/4th parking fare
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ///System.out.println("l'heure d'entree est: "+inTime); //
+        ///System.out.println(ticket.getInTime());
+        ///System.out.println("l'heure de sortie est: "+outTime); //
+        ///System.out.println(ticket.getOutTime());
+        ticket.setParkingSpot(parkingSpot);
+        //Act
+        fareCalculatorService.calculateFareWith30Remise(ticket);
+        //Assert
+        assertEquals((Fare.BIKE_RATE_PER_HOUR*1.25), ticket.getPrice() );
+    }
+
     @Disabled
     public void calculateFareCarWithMoreThanADayParkingTime(){
         Date inTime = new Date();
