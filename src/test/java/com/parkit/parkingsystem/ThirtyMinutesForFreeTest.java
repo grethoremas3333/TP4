@@ -189,7 +189,7 @@ public class ThirtyMinutesForFreeTest {
         assertEquals((Fare.BIKE_RATE_PER_HOUR*1.25), ticket.getPrice() );
     }
 
-    @Disabled
+    @Test
     public void calculateFareCarWithMoreThanADayParkingTime(){
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  24 * 60 * 60 * 1000) );//24 hours parking time should give 24 * parking fare per hour
@@ -202,7 +202,7 @@ public class ThirtyMinutesForFreeTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFareWith30Remise(ticket);
-        assertEquals( (24 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
+        assertEquals( ((24 * Fare.CAR_RATE_PER_HOUR)-0.75) , ticket.getPrice());
     }
 
 }

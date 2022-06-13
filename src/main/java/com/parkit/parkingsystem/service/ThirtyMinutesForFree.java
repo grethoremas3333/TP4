@@ -37,7 +37,7 @@ public class ThirtyMinutesForFree {
         /*if (31 =< (outHour - inHour) =<59){
 
         }*/
-        if ((outHour - inHour) < 0) {
+        if (((outHour - inHour) < 0) && (daysDifference == 0.0)) {
             duration = 0.0;
         } else {
             duration = ( (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0) );
