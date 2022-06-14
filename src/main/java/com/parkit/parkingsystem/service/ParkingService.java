@@ -15,7 +15,8 @@ public class ParkingService {
 
     private static final Logger logger = LogManager.getLogger("ParkingService");
 
-    private static FareCalculatorService fareCalculatorService = new FareCalculatorService();
+    ///private static FareCalculatorService fareCalculatorService = new FareCalculatorService();
+    private static ThirtyMinutesForFree fareCalculatorService = new ThirtyMinutesForFree(); ///
 
     private InputReaderUtil inputReaderUtil;
     private ParkingSpotDAO parkingSpotDAO;
@@ -103,7 +104,8 @@ public class ParkingService {
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
             ticket.setOutTime(outTime);
-            fareCalculatorService.calculateFare(ticket);
+            ///fareCalculatorService.calculateFare(ticket);
+            fareCalculatorService.calculateFareWith30Remise(ticket);///
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();
                 parkingSpot.setAvailable(true);
