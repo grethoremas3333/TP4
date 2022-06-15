@@ -10,11 +10,31 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
         }
 
-        int inHour = ticket.getInTime().getHours();
-        int outHour = ticket.getOutTime().getHours();
+        double daysDifference = ticket.getOutTime().getDay() - ticket.getInTime().getDay(); //on recupere le nombre de jours
+        ///System.out.println("le nombre de jour de difference est de: "+ daysDifference);
+
+        double inHour = ticket.getInTime().getHours(); /// on recupere la vaheur des heures HH de l'heure d'entree
+        double outHour = ticket.getOutTime().getHours(); /// on recupere la vaheur des heures HH de l'heure de sortie
+
+        double inMinutes = ticket.getInTime().getMinutes(); /// on recupere la vaheur des minutes MM de l'heure d'entree
+        double outMinutes = ticket.getOutTime().getMinutes(); /// on recupere la vaheur des minutes MM de l'heure de sortie
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
-        int duration = outHour - inHour;
+        ///System.out.println("HelloICI");
+        inHour = (inHour * 60.0) + inMinutes;
+        ///System.out.println("heure arrive: "+inHour); ///
+        outHour = (outHour * 60.0) + outMinutes;
+        ///System.out.println("heure sortie: "+outHour); ///
+
+        double duration = 0.0;
+
+        if (((outHour - inHour) <= 30) && (daysDifference == 0.0)) {
+            duration = 0.0;
+        } else {
+            duration = ( (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0) );
+        }
+
+        //double duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) /60.0);
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
