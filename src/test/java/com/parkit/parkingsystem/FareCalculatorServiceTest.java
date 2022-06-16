@@ -233,4 +233,20 @@ public class FareCalculatorServiceTest {
         //assertEquals((((((175*Fare.BIKE_RATE_PER_HOUR)/60)-((175*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))), ticket.getPrice() );
     }
 
+    @Test
+    public void calculateFareBikeWithLessThanThirtyMinutesParkingTime(){
+        //Arrange
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  20 * 60 * 1000) );
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+        ticket.setVehicleRegNumber("ABCDEF");
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        //Act
+        fareCalculatorService.calculateFare(ticket);
+        //Assert
+        assertEquals((0.0 * Fare.BIKE_RATE_PER_HOUR), ticket.getPrice() );
+    }
 }
