@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class FareCalculatorServiceTest {
@@ -32,11 +33,13 @@ public class FareCalculatorServiceTest {
     public void calculateFareCar(){
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
-        Date outTime = new Date();
+        LocalDateTime outTime = LocalDateTime.now();
+        Date outoutTime = new Date();
+        System.out.println("l'heure obtenue avec LocalDate: "+outTime+" l'heure obtenue avec Date: "+outoutTime);
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
 
         ticket.setInTime(inTime);
-        ticket.setOutTime(outTime);
+        //ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
         assertEquals(ticket.getPrice(), Fare.CAR_RATE_PER_HOUR);
