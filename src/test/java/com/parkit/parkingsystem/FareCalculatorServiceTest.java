@@ -197,6 +197,7 @@ public class FareCalculatorServiceTest {
         //when(ticketDAO.getTicket(ticket.getVehicleRegNumber())).thenReturn("ABCDEF");
         //when(ticketDAO.getTicket(anyString())).thenReturn("ABCDEF");
         //when(ticketDAO.getTicket(anyString())).thenReturn(ticket.getVehicleRegNumber());
+        //when(ticketDAO.getTicket(anyString())).thenReturn(ticket.setVehicleRegNumber("12345"));
         ticket.setVehicleRegNumber("12345");
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
