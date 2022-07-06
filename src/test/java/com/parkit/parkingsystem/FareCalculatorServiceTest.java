@@ -148,6 +148,7 @@ public class FareCalculatorServiceTest {
         inTime.setTime( System.currentTimeMillis() - (  30 * 60 * 1000) );
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+        ticket.setVehicleRegNumber("6969"); ///
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);

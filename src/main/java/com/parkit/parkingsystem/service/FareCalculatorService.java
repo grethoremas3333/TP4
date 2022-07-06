@@ -41,7 +41,7 @@ public class FareCalculatorService {
         if (((outHour - inHour) <= 30) && (daysDifference == 0.0)) {
             duration = 0.0;
         }
-        else if (ticketDAO.getTicket(ticket.getVehicleRegNumber()) != null){
+        else if (ticketDAO.getTicket(ticket.getVehicleRegNumber()) != null){ //marche avec connection directe a la BDD 
             System.out.println("element trouve");
             duration = ( (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0) - ((((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0)*0.05) );
         } ///5% pour les clients fideles
