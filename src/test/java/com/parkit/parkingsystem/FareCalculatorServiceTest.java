@@ -18,11 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-<<<<<<< HEAD
+
 import java.time.LocalDateTime;
-=======
+
 import java.text.DecimalFormat;
->>>>>>> features/v0.1.0
 import java.util.Date;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,12 +47,10 @@ public class FareCalculatorServiceTest {
     public void calculateFareCar(){
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
-        LocalDateTime outTime = LocalDateTime.now();
-        Date outoutTime = new Date();
-        System.out.println("l'heure obtenue avec LocalDate: "+outTime+" l'heure obtenue avec Date: "+outoutTime);
+        Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
         ticket.setInTime(inTime);
-        //ticket.setOutTime(outTime);
+        ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
         assertThat(ticket.getPrice()).isEqualTo(Fare.CAR_RATE_PER_HOUR);
@@ -112,12 +109,12 @@ public class FareCalculatorServiceTest {
         ticket.setParkingSpot(parkingSpot);
         //Act
         fareCalculatorService.calculateFare(ticket);
-<<<<<<< HEAD
+
         //Assert
         assertEquals((0.75 * Fare.BIKE_RATE_PER_HOUR), ticket.getPrice() );
-=======
+
         assertThat(ticket.getPrice()).isEqualTo(0.75 * Fare.BIKE_RATE_PER_HOUR);
->>>>>>> features/v0.1.0
+
     }
 
     @Test

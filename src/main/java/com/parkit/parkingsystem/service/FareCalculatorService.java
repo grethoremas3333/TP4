@@ -19,15 +19,11 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
         }
 
-<<<<<<< HEAD
         double daysDifference = ticket.getOutTime().getDay() - ticket.getInTime().getDay(); //on recupere le nombre de jours
         ///System.out.println("le nombre de jour de difference est de: "+ daysDifference);
-=======
+
         DecimalFormat df = new DecimalFormat("0.00"); ///* pour la conversion a deux decimals
         df.setRoundingMode(RoundingMode.FLOOR);  //*/
-
-        double daysDifference = ticket.getOutTime().getDay() - ticket.getInTime().getDay(); //on recupere le nombre de jours
->>>>>>> features/v0.1.0
 
         double inHour = ticket.getInTime().getHours(); /// on recupere la vaheur des heures HH de l'heure d'entree
         double outHour = ticket.getOutTime().getHours(); /// on recupere la vaheur des heures HH de l'heure de sortie
@@ -36,20 +32,15 @@ public class FareCalculatorService {
         double outMinutes = ticket.getOutTime().getMinutes(); /// on recupere la vaheur des minutes MM de l'heure de sortie
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
-<<<<<<< HEAD
-        ///System.out.println("HelloICI");
-=======
 
->>>>>>> features/v0.1.0
         inHour = (inHour * 60.0) + inMinutes;
         ///System.out.println("heure arrive: "+inHour); ///
         outHour = (outHour * 60.0) + outMinutes;
         ///System.out.println("heure sortie: "+outHour); ///
-<<<<<<< HEAD
-        double duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) /60.0);
-=======
 
-        double duration = 0.0;
+        double duration = (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) /60.0);
+
+       duration = 0.0;
         ///String[] preferVehicleRegNumber = {"ABCDEF", "323", "12345", "569"}; ///pour les tests de 5% de fidelite
 
         if (((outHour - inHour) <= 30) && (daysDifference == 0.0)) {
@@ -66,7 +57,6 @@ public class FareCalculatorService {
         /* else if ((Arrays.asList(preferVehicleRegNumber).contains(ticket.getVehicleRegNumber()))) {
             duration = ( (((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0) - ((((outHour - inHour) + (daysDifference * 24.0 * 60.0)) / 60.0)*0.05) );
         } //avec le tableau de preference */
->>>>>>> features/v0.1.0
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
