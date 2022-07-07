@@ -60,29 +60,37 @@ public class FareCalculatorService {
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
-                ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
+                //ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
                 //ticket.setPrice(Double.parseDouble(df.format(duration * Fare.CAR_RATE_PER_HOUR)));
-                /*try {
+                //*
+                try {
                     double value = duration * Fare.CAR_RATE_PER_HOUR;
                     String formate = df.format(value);
                     double finalValue = (Double)df.parse(formate);
                     ticket.setPrice(finalValue);
                 } catch (ParseException pe){
                     System.out.println("Erreur formatage!!!");
-                }*/
+                }//*/
                 break;
             }
             case BIKE: {
-                ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
+                //ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
                 //ticket.setPrice(Double.parseDouble(df.format(duration * Fare.BIKE_RATE_PER_HOUR)));
-                /*try {
+                //*
+                try {
                     double value = duration * Fare.BIKE_RATE_PER_HOUR;
                     String formate = df.format(value);
-                    double finalValue = (Double)df.parse(formate);
-                    ticket.setPrice(finalValue);
+                    ///Object oj = formate; //1/
+                    ///double befValue = (double)oj; //2/
+                    ///double finalValue = (Double)df.parse(String.valueOf(befValue)); //3/
+                    double finalValue = (Double)df.parse(formate); //Ici
+                    Object oj = finalValue; //*/
+                    double defFinalValue = (Double)finalValue;//*/
+                    ticket.setPrice(defFinalValue); //*/
+                    //ticket.setPrice(finalValue); //Ici/
                 } catch (ParseException pe){
                     System.out.println("Erreur formatage!!!");
-                }*/
+                }//*/
                 break;
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
