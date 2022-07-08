@@ -181,7 +181,17 @@ public class FareCalculatorServiceTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
-        assertThat(ticket.getPrice()).isEqualTo(0.0 * Fare.BIKE_RATE_PER_HOUR);
+        try {
+            DecimalFormat df = new DecimalFormat("0.00"); ///* pour la conversion a deux decimals
+            df.setRoundingMode(RoundingMode.FLOOR);  //*/
+            double initValue = 0.0 * Fare.BIKE_RATE_PER_HOUR;
+            String formate = df.format(initValue);
+            double finalValue = (Double)df.parse(formate) ;
+            assertThat(ticket.getPrice()).isEqualTo(finalValue);
+        } catch (ParseException pe){
+            System.out.println("Erreur formatage!!!");
+        }
+        //assertThat(ticket.getPrice()).isEqualTo(0.0 * Fare.BIKE_RATE_PER_HOUR);
     }
 
     @Test

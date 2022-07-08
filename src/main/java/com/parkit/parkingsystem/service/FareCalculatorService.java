@@ -86,7 +86,7 @@ public class FareCalculatorService {
                     double finalValue = (Double)df.parse(formate); //Ici
                     Object oj = finalValue; //*/
                     double defFinalValue = (Double)finalValue;//*/
-                    ticket.setPrice(defFinalValue); //*/
+                    ticket.setPrice(defFinalValue); //*/ obj.setID(((Integer) row.get("ID")).longValue());
                     //ticket.setPrice(finalValue); //Ici/
                 } catch (ParseException pe){
                     System.out.println("Erreur formatage!!!");
