@@ -18,7 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 @ExtendWith(MockitoExtension.class)
@@ -216,7 +218,16 @@ public class FareCalculatorServiceTest {
 
         fareCalculatorService.calculateFare(ticket);
 
-        assertThat(ticket.getPrice()).isEqualTo((((((60*Fare.CAR_RATE_PER_HOUR)/60)-((60*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((60*Fare.CAR_RATE_PER_HOUR)/60)-((60*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        try {
+            DecimalFormat df = new DecimalFormat("0.000)"); ///* pour la conversion a deux decimals
+            df.setRoundingMode(RoundingMode.UP);
+            String formate = df.format(ticket.getPrice());
+            double finalValue = (Double) df.parse(formate);
+            assertThat(finalValue).isEqualTo((((((60 * Fare.CAR_RATE_PER_HOUR) / 60) - ((60 * Fare.CAR_RATE_PER_HOUR) / 60) * 0.05))));
+        } catch (ParseException pe){
+            System.out.println("Erreur formatage!!!");
+        }
     }
 
     @Test
@@ -230,6 +241,8 @@ public class FareCalculatorServiceTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService = new FareCalculatorService(ticketDAO);
+        when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
+
         fareCalculatorService.calculateFare(ticket);
         //assertEquals((Fare.BIKE_RATE_PER_HOUR - (Fare.BIKE_RATE_PER_HOUR * 0.05)), ticket.getPrice() );
         assertThat(ticket.getPrice()).isEqualTo((((((60*Fare.BIKE_RATE_PER_HOUR)/60)-((60*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))));
@@ -245,8 +258,21 @@ public class FareCalculatorServiceTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService = new FareCalculatorService(ticketDAO);
+        when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
+
         fareCalculatorService.calculateFare(ticket);
-        assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+
+        System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        try {
+            DecimalFormat df = new DecimalFormat("0.000)"); ///* pour la conversion a deux decimals
+            df.setRoundingMode(RoundingMode.UP);
+            String formate = df.format(ticket.getPrice());
+            double finalValue = (Double) df.parse(formate);
+            assertThat(finalValue).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        } catch (ParseException pe){
+            System.out.println("Erreur formatage!!!");
+        }
+        //assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
     }
 
     @Test
@@ -260,6 +286,8 @@ public class FareCalculatorServiceTest {
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService = new FareCalculatorService(ticketDAO);
+        when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
+
         fareCalculatorService.calculateFare(ticket);
         assertThat(ticket.getPrice()).isEqualTo((((((175*Fare.BIKE_RATE_PER_HOUR)/60)-((175*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))));
         //assertEquals((((((175*Fare.BIKE_RATE_PER_HOUR)/60)-((175*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))), ticket.getPrice() );
