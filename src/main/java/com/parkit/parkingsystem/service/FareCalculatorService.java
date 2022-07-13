@@ -12,7 +12,14 @@ import java.text.*;
 
 public class FareCalculatorService {
 
-    private TicketDAO ticketDAO = new TicketDAO(); ///
+    private TicketDAO ticketDAO; ///
+
+    public FareCalculatorService(TicketDAO ticketDAO) {
+        this.ticketDAO = ticketDAO;
+    }
+
+    public FareCalculatorService() {
+    }
 
     public void calculateFare(Ticket ticket){
         if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) ){
