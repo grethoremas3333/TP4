@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class FareCalculatorService {
 
-    private TicketDAO ticketDAO; ///
+    private TicketDAO ticketDAO;
 
     public FareCalculatorService(TicketDAO ticketDAO) {
         this.ticketDAO = ticketDAO;
@@ -23,8 +23,7 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
         }
 
-        long durationInMinutes = durationInMinutes(ticket.getInTime(),
-                ticket.getOutTime());
+        long durationInMinutes = durationInMinutes(ticket.getInTime(), ticket.getOutTime());
         boolean fivePercentOff = false;
 
         if (durationInMinutes <= 30) return;
