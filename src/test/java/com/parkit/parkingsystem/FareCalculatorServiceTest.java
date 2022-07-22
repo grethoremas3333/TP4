@@ -205,10 +205,6 @@ public class FareCalculatorServiceTest {
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
-        //when(ticketDAO.getTicket(ticket.getVehicleRegNumber())).thenReturn("ABCDEF");
-        //when(ticketDAO.getTicket(anyString())).thenReturn("ABCDEF");
-        //when(ticketDAO.getTicket(anyString())).thenReturn(ticket.getVehicleRegNumber());
-        //when(ticketDAO.getTicket(anyString())).thenReturn(ticket.setVehicleRegNumber("12345"));
         ticket.setVehicleRegNumber("12345");
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
@@ -219,7 +215,7 @@ public class FareCalculatorServiceTest {
         fareCalculatorService.calculateFare(ticket);
 
         System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((60*Fare.CAR_RATE_PER_HOUR)/60)-((60*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
-        assertThat(ticket.getPrice()).isEqualTo((((((60 * Fare.CAR_RATE_PER_HOUR) / 60) - ((60 * Fare.CAR_RATE_PER_HOUR) / 60) * 0.05))));
+        assertThat(ticket.getPrice()).isEqualTo(1.425);
 
     }
 
