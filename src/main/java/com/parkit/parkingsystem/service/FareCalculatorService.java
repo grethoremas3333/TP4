@@ -4,6 +4,9 @@ import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.dao.TicketDAO;
 import com.parkit.parkingsystem.model.Ticket;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 public class FareCalculatorService {
@@ -29,15 +32,26 @@ public class FareCalculatorService {
         if (durationInMinutes <= 30) return;
 
         if (ticketDAO.getTicket(ticket.getVehicleRegNumber()) != null) {
-            System.out.println("client beneficiant des 5% de reduction!!!");
+            //System.out.println("client beneficiant des 5% de reduction!!!");
             fivePercentOff = true;
         }
 
         switch (ticket.getParkingSpot().getParkingType()) {
             case CAR: {
                 double price = (durationInMinutes * Fare.CAR_RATE_PER_HOUR)/60;
-                if (fivePercentOff) price = price * 0.95;
-                ticket.setPrice(price);
+                double finalValue = price;
+                if (fivePercentOff) {
+                    try {
+                        price = price * 0.95;
+                        DecimalFormat df = new DecimalFormat("0.000)");
+                        df.setRoundingMode(RoundingMode.UP);
+                        String formatage = df.format(price);
+                        finalValue = (Double) df.parse(formatage);
+                    } catch (ParseException pe){
+                        System.out.println("Erreur formatage!!!");
+                    }
+                }
+                ticket.setPrice(finalValue);
                 break;
             }
             case BIKE: {

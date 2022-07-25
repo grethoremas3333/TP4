@@ -214,7 +214,7 @@ public class FareCalculatorServiceTest {
 
         fareCalculatorService.calculateFare(ticket);
 
-        System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((60*Fare.CAR_RATE_PER_HOUR)/60)-((60*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        //System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((60*Fare.CAR_RATE_PER_HOUR)/60)-((60*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
         assertThat(ticket.getPrice()).isEqualTo(1.425);
 
     }
@@ -251,7 +251,7 @@ public class FareCalculatorServiceTest {
 
         fareCalculatorService.calculateFare(ticket);
 
-        System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        //System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
         assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
         //assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
     }
