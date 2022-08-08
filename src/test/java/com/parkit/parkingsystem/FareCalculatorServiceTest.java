@@ -233,8 +233,7 @@ public class FareCalculatorServiceTest {
         when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
 
         fareCalculatorService.calculateFare(ticket);
-        //assertEquals((Fare.BIKE_RATE_PER_HOUR - (Fare.BIKE_RATE_PER_HOUR * 0.05)), ticket.getPrice() );
-        assertThat(ticket.getPrice()).isEqualTo((((((60*Fare.BIKE_RATE_PER_HOUR)/60)-((60*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))));
+        assertThat(ticket.getPrice()).isEqualTo(0.95);
     }
     @Test
     public void calculateFivePercentCar(){
@@ -250,10 +249,7 @@ public class FareCalculatorServiceTest {
         when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
 
         fareCalculatorService.calculateFare(ticket);
-
-        //System.out.println("le montant dans ticket.getPrice() est: "+ticket.getPrice()+" et le montant dans le test est: "+(((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
-        assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
-        //assertThat(ticket.getPrice()).isEqualTo((((((260*Fare.CAR_RATE_PER_HOUR)/60)-((260*Fare.CAR_RATE_PER_HOUR)/60) * 0.05))));
+        assertThat(ticket.getPrice()).isEqualTo(6.175);
     }
 
     @Test
@@ -270,8 +266,7 @@ public class FareCalculatorServiceTest {
         when(ticketDAO.getTicket(anyString())).thenReturn(ticket);
 
         fareCalculatorService.calculateFare(ticket);
-        assertThat(ticket.getPrice()).isEqualTo((((((175*Fare.BIKE_RATE_PER_HOUR)/60)-((175*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))));
-        //assertEquals((((((175*Fare.BIKE_RATE_PER_HOUR)/60)-((175*Fare.BIKE_RATE_PER_HOUR)/60) * 0.05))), ticket.getPrice() );
+        assertThat(ticket.getPrice()).isEqualTo(2.770833333333333);
     }
 
     @Test
